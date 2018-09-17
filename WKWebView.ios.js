@@ -170,6 +170,10 @@ class WKWebView extends React.Component {
      */
     onError: PropTypes.func,
     /**
+     * Invoked when page crashes
+     */
+    onTernimation: PropTypes.func,
+    /**
      * Report the progress
      */
     onProgress: PropTypes.func,
@@ -485,6 +489,11 @@ class WKWebView extends React.Component {
       viewState: WebViewState.ERROR
     });
   };
+
+  _onTermination = (event: Event) => {
+    var { onTermination } = this.props;
+    onTermination && onTermination(event);
+  }
 
   _onLoadingFinish = (event: Event) => {
     const { onLoad, onLoadEnd } = this.props;

@@ -112,6 +112,7 @@ Add JavaScript at document end. Since 1.20.0, the implementation has been change
 - injectJavaScript
 - injectedJavaScript
 - onError
+- onTermination
 - onLoad
 - onLoadEnd
 - onLoadStart

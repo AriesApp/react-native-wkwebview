@@ -29,6 +29,7 @@
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingStart;
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingFinish;
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingError;
+@property (nonatomic, copy) RCTDirectEventBlock onTermination;
 @property (nonatomic, copy) RCTDirectEventBlock onShouldStartLoadWithRequest;
 @property (nonatomic, copy) RCTDirectEventBlock onProgress;
 @property (nonatomic, copy) RCTDirectEventBlock onMessage;
@@ -540,6 +541,13 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
                                       @"description": error.localizedDescription,
                                       }];
     _onLoadingError(event);
+  }
+}
+
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
+{
+  if (_onTermination) {
+    _onTermination([self baseEvent]);
   }
 }
 
