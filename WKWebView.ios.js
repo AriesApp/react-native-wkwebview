@@ -172,7 +172,7 @@ class WKWebView extends React.Component {
     /**
      * Invoked when page crashes
      */
-    onTernimation: PropTypes.func,
+    onTermination: PropTypes.func,
     /**
      * Report the progress
      */
