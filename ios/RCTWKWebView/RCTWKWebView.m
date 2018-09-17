@@ -544,13 +544,6 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   }
 }
 
-- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
-{
-  if (_onTermination) {
-    _onTermination([self baseEvent]);
-  }
-}
-
 - (void)webView:(WKWebView *)webView didFinishNavigation:(__unused WKNavigation *)navigation
 {
   // we only need the final 'finishLoad' call so only fire the event when we're actually done loading.
@@ -622,6 +615,9 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
 {
   RCTLogWarn(@"Webview Process Terminated");
+  if (_onTermination) {
+    _onTermination([self baseEvent]);
+  }
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
